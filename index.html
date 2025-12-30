@@ -1,130 +1,133 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EliteGaming887 | Multi-Language BDT</title>
+    <title>EliteGaming | Ultimate Live Control Node</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@400;700;900&display=swap');
-        :root { --gold: #f59e0b; --dark: #01040a; }
-        body { background: var(--dark); color: #f1f5f9; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0;}
+        :root { --gold: #f59e0b; --dark: #010206; --glass: rgba(15, 23, 42, 0.98); }
+        body { background: var(--dark); color: #f1f5f9; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         .font-orbit { font-family: 'Orbitron', sans-serif; }
-        .glass { background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(25px); border: 1px solid rgba(255,215,0,0.1); }
-        .gold-glow { text-shadow: 0 0 15px rgba(245, 158, 11, 0.4); color: var(--gold); }
+        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid rgba(255,215,0,0.1); }
+        .btn-gold { background: linear-gradient(145deg, #f59e0b, #d97706); color: #000; font-weight: 900; }
         .hidden { display: none !important; }
-        .animate-ticker { animation: ticker 35s linear infinite; white-space: nowrap; display: inline-block; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .animate-scroll { animation: scroll 25s linear infinite; white-space: nowrap; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .banner-box { height: 180px; background-size: cover; background-position: center; border-radius: 2rem; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="overflow-x-hidden">
 
-    <div id="noticeBar" class="hidden fixed top-0 w-full z-50 bg-black/90 py-1 border-b border-amber-500/20 flex flex-col items-center">
-        <div class="flex gap-4 mb-1">
-            <button onclick="changeLang('bn')" class="text-[10px] font-bold text-amber-500 border border-amber-500/30 px-2 rounded">বাংলা</button>
-            <button onclick="changeLang('en')" class="text-[10px] font-bold text-slate-400 border border-slate-400/30 px-2 rounded">English</button>
-        </div>
-        <div id="tickerText" class="animate-ticker text-amber-500 text-[9px] font-black uppercase italic tracking-widest">
-            🔥 EliteGaming887: নতুন মেম্বারদের জন্য ৩০০% বোনাস! | বিকাশ ও নগদে দ্রুত পেমেন্ট সুবিধা!
+    <div class="fixed top-0 w-full z-[100] bg-black/95 py-2 border-b border-amber-500/20">
+        <div id="scrollingNotice" class="animate-scroll text-amber-500 text-[10px] font-black uppercase italic">
+            EliteGaming: Loading Live Updates...
         </div>
     </div>
 
-    <div id="authBox" class="min-h-screen flex items-center justify-center p-6">
-        <div class="w-full max-w-md glass p-10 rounded-[3rem] text-center border border-white/5 shadow-2xl">
-            <h1 class="text-4xl font-black font-orbit gold-glow italic mb-2">ELITE 887</h1>
-            <p id="authSub" class="text-[9px] text-slate-500 uppercase tracking-[0.4em] mb-10 font-black">Official BDT Network</p>
-            
+    <div id="authBox" class="min-h-screen flex flex-col items-center p-6 pt-16">
+        <div class="w-full max-w-md text-center">
+            <h1 id="siteName" class="text-4xl font-black italic text-amber-500 mb-2 font-orbit uppercase">EliteGaming</h1>
+            <div id="mainBanner" class="banner-box mb-8 relative shadow-2xl mt-4" style="background-image: url('https://i.ibb.co/pWfSgG9/poster-placeholder.jpg');">
+                <div class="absolute inset-0 bg-black/40 rounded-[2rem]"></div>
+                <div class="absolute bottom-4 left-6 text-left">
+                    <p id="bannerTitle" class="text-white font-black text-xl italic uppercase">Elite Mega Offer</p>
+                </div>
+            </div>
+
             <div id="loginForm" class="space-y-4">
-                <input id="email" type="email" placeholder="Email Address" class="w-full p-4 bg-black/50 border border-white/10 rounded-2xl outline-none focus:border-amber-500 text-sm">
-                <input id="pass" type="password" placeholder="Password" class="w-full p-4 bg-black/50 border border-white/10 rounded-2xl outline-none focus:border-amber-500 text-sm">
-                <button id="loginBtn" onclick="handleAuth('login')" class="w-full py-4 bg-amber-500 text-black font-black rounded-2xl uppercase shadow-xl tracking-widest">Login</button>
-                <button id="toggleReg" onclick="toggleAuth('reg')" class="text-[10px] text-slate-500 font-bold uppercase mt-4">Create Account</button>
+                <input id="email" type="email" placeholder="Email Address" class="w-full p-4 bg-black border border-white/10 rounded-2xl outline-none focus:border-amber-500">
+                <input id="pass" type="password" placeholder="Password" class="w-full p-4 bg-black border border-white/10 rounded-2xl outline-none focus:border-amber-500">
+                <button onclick="handleAuth('login')" class="w-full py-4 btn-gold rounded-2xl font-black uppercase">Login</button>
+                <button onclick="toggleAuth('reg')" class="text-[9px] text-amber-500 font-black uppercase underline mt-2 block mx-auto">Create Account</button>
             </div>
-
+            
             <div id="regForm" class="hidden space-y-4">
-                <input id="regEmail" type="email" placeholder="New Email" class="w-full p-4 bg-black/50 border border-white/10 rounded-2xl outline-none focus:border-amber-500 text-sm">
-                <input id="regPass" type="password" placeholder="New Password" class="w-full p-4 bg-black/50 border border-white/10 rounded-2xl outline-none focus:border-amber-500 text-sm">
-                <button id="regBtn" onclick="handleAuth('reg')" class="w-full py-4 bg-emerald-500 text-black font-black rounded-2xl uppercase tracking-widest">Register Now</button>
-                <button id="toggleLogin" onclick="toggleAuth('login')" class="text-[10px] text-slate-500 font-bold uppercase mt-4 block mx-auto underline">Back to Login</button>
+                <input id="regEmail" type="email" placeholder="New Email" class="w-full p-4 bg-black border border-white/10 rounded-2xl outline-none">
+                <input id="regPass" type="password" placeholder="New Password" class="w-full p-4 bg-black border border-white/10 rounded-2xl outline-none">
+                <button onclick="handleAuth('reg')" class="w-full py-4 bg-emerald-600 text-black font-black rounded-2xl uppercase">Register</button>
+                <button onclick="toggleAuth('login')" class="text-[9px] text-slate-500 uppercase underline mt-4">Back</button>
             </div>
         </div>
     </div>
 
-    <div id="dashboard" class="hidden pt-24 pb-24 max-w-7xl mx-auto px-4">
-        <header class="glass p-8 rounded-[3rem] mb-8 flex justify-between items-center border border-white/5 shadow-2xl">
+    <div id="dashboard" class="hidden pt-20 pb-24 max-w-lg mx-auto px-4">
+        <header class="glass p-8 rounded-[3.5rem] flex justify-between items-center border-l-8 border-amber-500 mb-8 shadow-2xl">
             <div>
-                <p id="uStatus" class="text-[9px] text-slate-400 font-black mb-1 uppercase tracking-tighter italic">VIP Player</p>
-                <h1 id="uBalDisp" class="text-4xl font-black font-orbit gold-glow tracking-tighter">৳ 0.00</h1>
+                <p class="text-[9px] text-amber-500 font-black uppercase italic tracking-widest">VIP Elite Node</p>
+                <h1 id="uBalDisp" class="text-4xl font-black font-orbit text-white mt-1 italic">৳ 0.00</h1>
             </div>
             <div class="flex gap-2">
-                <button id="masterBtn" onclick="toggleAdmin(true)" class="hidden bg-red-600 px-4 py-2 rounded-xl text-[9px] font-black uppercase shadow-lg">Master HQ</button>
-                <button onclick="logout()" class="w-10 h-10 glass rounded-xl flex items-center justify-center text-red-500 border border-white/5"><i class="fas fa-power-off"></i></button>
+                <button id="masterBtn" onclick="toggleAdmin(true)" class="hidden bg-red-600 px-4 py-2 rounded-xl text-[9px] font-black animate-pulse uppercase">Master HQ</button>
+                <button onclick="logout()" class="w-12 h-12 glass rounded-2xl flex items-center justify-center text-red-500"><i class="fas fa-sign-out-alt"></i></button>
             </div>
         </header>
 
-        <section id="providerContainer" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-10">
-            </section>
-
-        <div class="grid grid-cols-2 gap-4">
-            <button id="depBtn" onclick="openWallet('deposit')" class="p-6 bg-amber-500 text-black font-black rounded-[2.5rem] uppercase text-xs shadow-xl tracking-widest">Deposit</button>
-            <button id="witBtn" onclick="openWallet('withdraw')" class="p-6 bg-slate-900 text-white font-black rounded-[2.5rem] uppercase text-xs border border-white/10 tracking-widest">Withdraw</button>
+        <div class="grid grid-cols-2 gap-4 mb-10">
+            <button onclick="openW('deposit')" class="p-6 btn-gold rounded-[2.5rem] uppercase text-[10px] font-black shadow-xl">Deposit</button>
+            <button onclick="openW('withdraw')" class="p-6 bg-slate-900 text-white font-black rounded-[2.5rem] uppercase text-[10px] border border-white/10 shadow-xl">Withdraw</button>
         </div>
+
+        <div id="gameGrid" class="grid grid-cols-3 gap-3"></div>
     </div>
 
-    <div id="modal" class="fixed inset-0 z-[200] bg-black/98 hidden flex items-center justify-center p-4">
-        <div class="glass w-full max-w-sm p-10 rounded-[3.5rem] border border-amber-500/20 shadow-2xl">
-            <h3 id="modalTitle" class="text-xl font-black font-orbit text-amber-500 mb-8 uppercase text-center tracking-widest italic">Wallet</h3>
-            <div id="depSection" class="hidden mb-6 space-y-6">
-                <div class="bg-black/90 p-6 rounded-3xl border-2 border-dashed border-amber-500/20 text-center">
-                    <p id="sendMoneyText" class="text-[9px] text-slate-500 uppercase mb-2">Send Money To:</p>
-                    <b id="adminPayNo" class="text-amber-500 text-xl font-orbit tracking-widest">...</b>
-                </div>
-                <input id="trxId" type="text" placeholder="Transaction ID (TrxID)" class="w-full p-4 bg-black border border-slate-800 rounded-2xl text-xs uppercase outline-none focus:border-amber-500 font-black">
+    <div id="adminPanel" class="hidden fixed inset-0 z-[500] bg-black p-6 overflow-y-auto">
+        <div class="max-w-5xl mx-auto pb-20">
+            <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-6">
+                <h1 class="text-2xl font-black text-red-600 font-orbit italic">ULTIMATE MASTER HQ</h1>
+                <button onclick="toggleAdmin(false)" class="bg-white/10 px-6 py-2 rounded-xl text-[10px] font-black uppercase">Close</button>
             </div>
-            <input id="amt" type="number" placeholder="Amount (৳)" class="w-full p-4 bg-black border border-slate-800 rounded-2xl outline-none mb-6 text-white font-black text-center text-lg">
-            <button id="processBtn" onclick="submitReq()" class="w-full py-5 bg-amber-500 text-black font-black rounded-3xl uppercase text-[10px] shadow-xl tracking-widest">Submit Request</button>
-            <button id="cancelBtn" onclick="closeModal()" class="w-full mt-4 text-[10px] text-slate-600 font-black uppercase underline">Cancel</button>
-        </div>
-    </div>
 
-    <div id="adminPanel" class="hidden fixed inset-0 z-[110] bg-[#010206] p-6 overflow-y-auto">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex justify-between items-center mb-10 border-b border-red-600/20 pb-8">
-                <h1 class="text-2xl font-black font-orbit text-red-600 italic">MASTER HQ</h1>
-                <button onclick="toggleAdmin(false)" class="bg-slate-900 px-6 py-3 rounded-2xl text-[9px] font-black border border-white/10 uppercase">Close Panel</button>
-            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                <div class="glass p-8 rounded-[2.5rem] border-l-4 border-emerald-500 shadow-2xl text-white">
-                    <p class="text-[10px] text-emerald-500 font-black mb-4">GATEWAY CONFIG</p>
-                    <input id="setNo" type="text" placeholder="Bkash/Nagad No" class="w-full bg-black p-4 rounded-xl text-xs mb-4 border border-white/10 outline-none">
-                    <button onclick="saveHqSettings()" class="w-full bg-amber-500 py-4 rounded-xl text-black font-black uppercase text-xs">Save Settings</button>
+                <div class="glass p-8 rounded-[3rem] border-l-4 border-amber-500">
+                    <h3 class="text-[10px] font-black text-amber-500 uppercase mb-4">Site & Banner</h3>
+                    <input id="setSiteName" type="text" placeholder="Site Name" class="w-full bg-black p-4 rounded-xl text-xs border border-white/10 mb-2">
+                    <input id="setBannerUrl" type="text" placeholder="Banner URL" class="w-full bg-black p-4 rounded-xl text-xs border border-white/10 mb-2">
+                    <input id="setBannerText" type="text" placeholder="Banner Text" class="w-full bg-black p-4 rounded-xl text-xs border border-white/10 mb-4">
+                    <button onclick="updateSiteContent()" class="w-full py-3 bg-amber-500 text-black font-black rounded-xl text-[9px] uppercase">Update Site</button>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem] border-l-4 border-amber-500 shadow-2xl">
-                    <p class="text-[10px] text-amber-500 font-black mb-4">KILLER MODE (RTP)</p>
-                    <select id="rtpMode" class="w-full bg-black p-4 rounded-xl text-xs text-white border border-amber-500/20 outline-none">
-                        <option value="95">Normal Mode (95% Win)</option>
-                        <option value="5">Killer Mode (5% Win)</option>
-                        <option value="0">Profit Mode (0% Win)</option>
-                    </select>
+
+                <div class="glass p-8 rounded-[3rem] border-l-4 border-blue-500">
+                    <h3 class="text-[10px] font-black text-blue-500 uppercase mb-4">Gateways & Support</h3>
+                    <input id="setBkash" type="text" placeholder="bKash Number" class="w-full bg-black p-4 rounded-xl text-xs border border-white/10 mb-2">
+                    <input id="setNagad" type="text" placeholder="Nagad Number" class="w-full bg-black p-4 rounded-xl text-xs border border-white/10 mb-2">
+                    <input id="setRocket" type="text" placeholder="Rocket Number" class="w-full bg-black p-4 rounded-xl text-xs border border-white/10 mb-2">
+                    <input id="setWP" type="text" placeholder="WhatsApp Number" class="w-full bg-black p-4 rounded-xl text-xs border border-white/10 mb-4">
+                    <button onclick="updateSupport()" class="w-full py-3 bg-blue-600 text-white font-black rounded-xl text-[9px] uppercase">Update Gateways</button>
                 </div>
             </div>
+
             <div id="adminQueue" class="space-y-4"></div>
-            <div class="mt-10 overflow-x-auto glass rounded-3xl p-6">
-                 <table class="w-full text-left text-[11px] text-white">
-                    <thead><tr class="text-slate-500 border-b border-white/5"><th class="pb-4">User</th><th class="pb-4">Balance</th><th class="pb-4 text-right">Action</th></tr></thead>
-                    <tbody id="fullUserList"></tbody>
-                </table>
-            </div>
         </div>
     </div>
+
+    <div id="walletModal" class="fixed inset-0 z-[300] bg-black/98 hidden flex items-center justify-center p-6 text-center">
+        <div class="glass w-full max-w-sm p-10 rounded-[4rem] border-t-4 border-amber-500 shadow-2xl">
+            <h2 id="modalT" class="text-2xl font-black text-amber-500 mb-8 italic uppercase">Transaction</h2>
+            <div id="depArea" class="hidden mb-6">
+                <div class="flex flex-col gap-2 mb-6 text-left">
+                    <div class="flex justify-between bg-white/5 p-3 rounded-xl border border-white/5"><span class="text-[10px] font-black text-slate-400">bKash:</span><span id="dispBkash" class="text-[10px] font-black text-amber-500">...</span></div>
+                    <div class="flex justify-between bg-white/5 p-3 rounded-xl border border-white/5"><span class="text-[10px] font-black text-slate-400">Nagad:</span><span id="dispNagad" class="text-[10px] font-black text-amber-500">...</span></div>
+                    <div class="flex justify-between bg-white/5 p-3 rounded-xl border border-white/5"><span class="text-[10px] font-black text-slate-400">Rocket:</span><span id="dispRocket" class="text-[10px] font-black text-amber-500">...</span></div>
+                </div>
+                <input id="trxId" type="text" placeholder="TrxID" class="w-full p-4 bg-black border border-white/10 rounded-2xl text-[10px] font-black uppercase text-center focus:border-amber-500 outline-none">
+            </div>
+            <input id="amt" type="number" placeholder="৳ 0.00" class="w-full p-6 bg-black border border-white/10 rounded-[2rem] text-center text-3xl font-black mb-8 text-amber-500 outline-none">
+            <button onclick="submitR()" class="w-full py-5 btn-gold rounded-[2rem] uppercase text-[10px] font-black">Confirm</button>
+            <button onclick="closeW()" class="mt-6 text-[10px] text-slate-600 font-black uppercase underline italic">Back</button>
+        </div>
+    </div>
+
+    <a id="chatLink" href="#" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-[#25d366] rounded-2xl flex items-center justify-center text-white text-2xl shadow-2xl z-[1000] animate-bounce"><i class="fab fa-whatsapp"></i></a>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, doc, setDoc, getDoc, onSnapshot, updateDoc, collection, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, onSnapshot, updateDoc, collection, addDoc, query, where, getDocs, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+        // Your Firebase Config (Keep it updated)
         const firebaseConfig = {
             apiKey: "AIzaSyAj0SrEMzJDqMDbFetnWOGQJPIw7nuJANw",
             authDomain: "elitegaming1988-bda90.firebaseapp.com",
@@ -137,159 +140,121 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
-        const MASTER_ID = "elitegaming1988bd@gmail.com";
+        const MASTER = "elitegaming1988bd@gmail.com";
 
-        // Multi-Language Dictionary
-        const langData = {
-            bn: {
-                authSub: "অফিসিয়াল বিডিটি নেটওয়ার্ক",
-                loginBtn: "লগইন করুন",
-                toggleReg: "নতুন একাউন্ট খুলুন",
-                regBtn: "রেজিস্ট্রেশন করুন",
-                toggleLogin: "লগইন পেজে ফিরুন",
-                uStatus: "ভিআইপি প্লেয়ার",
-                depBtn: "ডিপোজিট",
-                witBtn: "উইথড্র",
-                sendMoney: "এই নাম্বারে সেন্ড মানি করুন:",
-                processBtn: "রিকোয়েস্ট পাঠান",
-                cancelBtn: "বাতিল",
-                ticker: "🔥 EliteGaming887: নতুন মেম্বারদের জন্য ৩০০% বোনাস! | বিকাশ ও নগদে দ্রুত পেমেন্ট সুবিধা!"
-            },
-            en: {
-                authSub: "Official BDT Network",
-                loginBtn: "Login Dashboard",
-                toggleReg: "Create New Account",
-                regBtn: "Register Now",
-                toggleLogin: "Back to Login",
-                uStatus: "VIP Premium Player",
-                depBtn: "Deposit",
-                witBtn: "Withdraw",
-                sendMoney: "Send Money To This Number:",
-                processBtn: "Submit Request",
-                cancelBtn: "Cancel",
-                ticker: "🔥 EliteGaming887: 300% Bonus for New Members! | Instant Bkash/Nagad Payment!"
+        // Real-Time System Sync
+        onSnapshot(doc(db, "system", "config"), (s) => {
+            if(s.exists()) {
+                const d = s.data();
+                document.getElementById('siteName').innerText = d.siteName || "EliteGaming";
+                document.getElementById('mainBanner').style.backgroundImage = `url('${d.bannerUrl}')`;
+                document.getElementById('bannerTitle').innerText = d.bannerText;
+                document.getElementById('dispBkash').innerText = d.bkash || "Soon";
+                document.getElementById('dispNagad').innerText = d.nagad || "Soon";
+                document.getElementById('dispRocket').innerText = d.rocket || "Soon";
+                document.getElementById('chatLink').href = `https://wa.me/${d.whatsapp}`;
+                // Fill Admin
+                document.getElementById('setSiteName').value = d.siteName || "";
+                document.getElementById('setBkash').value = d.bkash || "";
+                document.getElementById('setNagad').value = d.nagad || "";
+                document.getElementById('setRocket').value = d.rocket || "";
+                document.getElementById('setWP').value = d.whatsapp || "";
             }
-        };
-
-        window.changeLang = (l) => {
-            const d = langData[l];
-            document.getElementById('authSub').innerText = d.authSub;
-            document.getElementById('loginBtn').innerText = d.loginBtn;
-            document.getElementById('toggleReg').innerText = d.toggleReg;
-            document.getElementById('regBtn').innerText = d.regBtn;
-            document.getElementById('toggleLogin').innerText = d.toggleLogin;
-            document.getElementById('uStatus').innerText = d.uStatus;
-            document.getElementById('depBtn').innerText = d.depBtn;
-            document.getElementById('witBtn').innerText = d.witBtn;
-            document.getElementById('sendMoneyText').innerText = d.sendMoney;
-            document.getElementById('processBtn').innerText = d.processBtn;
-            document.getElementById('cancelBtn').innerText = d.cancelBtn;
-            document.getElementById('tickerText').innerText = d.ticker;
-        };
-
-        // Providers List
-        const providers = [
-            { name: "JILI", icon: "JL", color: "amber" },
-            { name: "PG SOFT", icon: "PG", color: "emerald" },
-            { name: "PRAGMATIC", icon: "PP", color: "orange" },
-            { name: "JDB", icon: "JD", color: "blue" },
-            { name: "EVOLUTION", icon: "EVO", color: "red" },
-            { name: "FA CHAI", icon: "FC", color: "cyan" }
-        ];
-
-        const container = document.getElementById('providerContainer');
-        providers.forEach(p => {
-            container.innerHTML += `
-                <div class="glass p-6 rounded-[2rem] text-center border border-white/5 active:scale-95 transition">
-                    <div class="w-10 h-10 bg-${p.color}-500/20 rounded-full flex items-center justify-center mx-auto mb-2 text-${p.color}-500 font-black">${p.icon}</div>
-                    <h4 class="text-[9px] font-black font-orbit text-white">${p.name}</h4>
-                </div>`;
         });
 
+        // Auth Logic
         onAuthStateChanged(auth, (user) => {
             if(user) {
                 document.getElementById('authBox').classList.add('hidden');
                 document.getElementById('dashboard').classList.remove('hidden');
-                document.getElementById('noticeBar').classList.remove('hidden');
+                if(user.email === MASTER) document.getElementById('masterBtn').classList.remove('hidden');
                 onSnapshot(doc(db, "users", user.uid), (snap) => {
-                    const d = snap.data();
-                    if(d) {
-                        document.getElementById('uBalDisp').innerText = "৳ " + d.balance.toFixed(2);
-                        if(d.email === MASTER_ID) {
-                            document.getElementById('masterBtn').classList.remove('hidden');
-                            syncUsersHQ();
-                        }
-                    }
-                });
-                onSnapshot(doc(db, "system", "hq"), snap => {
-                    const d = snap.data(); if(d) document.getElementById('adminPayNo').innerText = d.payNo;
+                    if(snap.exists()) document.getElementById('uBalDisp').innerText = "৳ " + snap.data().balance.toLocaleString();
                 });
             } else {
                 document.getElementById('authBox').classList.remove('hidden');
                 document.getElementById('dashboard').classList.add('hidden');
-                document.getElementById('noticeBar').classList.add('hidden');
             }
         });
 
+        // Admin Actions
+        window.updateSiteContent = async () => {
+            await setDoc(doc(db, "system", "config"), {
+                siteName: document.getElementById('setSiteName').value,
+                bannerUrl: document.getElementById('setBannerUrl').value,
+                bannerText: document.getElementById('setBannerText').value
+            }, { merge: true });
+            alert("Site Settings Updated!");
+        };
+
+        window.updateSupport = async () => {
+            await setDoc(doc(db, "system", "config"), {
+                bkash: document.getElementById('setBkash').value,
+                nagad: document.getElementById('setNagad').value,
+                rocket: document.getElementById('setRocket').value,
+                whatsapp: document.getElementById('setWP').value
+            }, { merge: true });
+            alert("Gateways Updated!");
+        };
+
+        window.toggleAdmin = (s) => {
+            document.getElementById('adminPanel').classList.toggle('hidden', !s);
+            if(s) {
+                onSnapshot(collection(db, "requests"), (snap) => {
+                    const q = document.getElementById('adminQueue'); q.innerHTML = "";
+                    snap.forEach(d => {
+                        const r = d.data();
+                        q.innerHTML += `<div class="p-6 glass rounded-[2rem] flex justify-between items-center border-l-4 border-amber-500 mb-4 shadow-xl"><div class="text-[10px] font-black uppercase text-slate-400">${r.email}<br><span class="text-xl text-white">৳${r.amount}</span><br>TRX: ${r.trx}</div><button onclick="approveReq('${d.id}', '${r.uid}', ${r.amount}, '${r.type}')" class="bg-emerald-600 px-6 py-2 rounded-xl text-[10px] font-black text-black">APPROVE</button></div>`;
+                    });
+                });
+            }
+        };
+
+        window.approveReq = async (id, uid, amt, type) => {
+            const bonus = type === 'deposit' ? (amt * 5) + amt : amt;
+            await updateDoc(doc(db, "users", uid), { balance: increment(type === 'withdraw' ? -amt : bonus) });
+            await deleteDoc(doc(db, "requests", id));
+            alert("Success!");
+        };
+
         window.handleAuth = async (mode) => {
-            const e = mode === 'login' ? document.getElementById('email').value : document.getElementById('regEmail').value;
-            const p = mode === 'login' ? document.getElementById('pass').value : document.getElementById('regPass').value;
+            const e = document.getElementById(mode === 'login' ? 'email' : 'regEmail').value;
+            const p = document.getElementById(mode === 'login' ? 'pass' : 'regPass').value;
             try {
                 if(mode === 'login') await signInWithEmailAndPassword(auth, e, p);
                 else {
                     const res = await createUserWithEmailAndPassword(auth, e, p);
-                    await setDoc(doc(db, "users", res.user.uid), { email: e, balance: 0, role: (e === MASTER_ID ? 'admin' : 'user'), uid: res.user.uid });
+                    await setDoc(doc(db, "users", res.user.uid), { email: e, balance: 0, uid: res.user.uid, winPct: 10 });
                 }
             } catch (err) { alert(err.message); }
         };
 
+        window.submitR = async () => {
+            const amount = parseFloat(document.getElementById('amt').value);
+            const trx = document.getElementById('trxId').value.trim().toUpperCase();
+            if(!amount || (wType === 'deposit' && !trx)) return alert("Fill data!");
+            await addDoc(collection(db, "requests"), { uid: auth.currentUser.uid, email: auth.currentUser.email, amount, trx, type: wType, status: "pending", time: new Date() });
+            alert("Sent!"); closeW();
+        };
+
+        // UI
+        const providers = ["JILI", "PG SOFT", "PRAGMATIC", "JDB", "FC", "KA"];
+        providers.forEach(n => {
+            document.getElementById('gameGrid').innerHTML += `<div class="glass p-5 rounded-[2rem] text-center border border-white/5" onclick="alert('Loading...')"><p class="text-[8px] font-black text-white uppercase italic">${n}</p></div>`;
+        });
         window.logout = () => signOut(auth);
         window.toggleAuth = (m) => {
             document.getElementById('loginForm').classList.toggle('hidden', m === 'reg');
             document.getElementById('regForm').classList.toggle('hidden', m === 'login');
         };
-
-        window.openWallet = (t) => {
-            window.walletType = t;
-            document.getElementById('modalTitle').innerText = t.toUpperCase();
-            document.getElementById('depSection').classList.toggle('hidden', t !== 'deposit');
-            document.getElementById('modal').classList.remove('hidden');
+        let wType = '';
+        window.openW = (t) => {
+            wType = t; document.getElementById('modalT').innerText = t.toUpperCase();
+            document.getElementById('depArea').classList.toggle('hidden', t !== 'deposit');
+            document.getElementById('walletModal').classList.remove('hidden');
         };
-        window.closeModal = () => document.getElementById('modal').classList.add('hidden');
-
-        window.submitReq = async () => {
-            const amount = parseFloat(document.getElementById('amt').value);
-            const trx = document.getElementById('trxId').value;
-            if(!amount || amount < 10) return alert("Min: ৳10");
-            await addDoc(collection(db, "requests"), {
-                uid: auth.currentUser.uid, email: auth.currentUser.email, amount, trx: trx || 'N/A', type: window.walletType, status: 'pending', time: new Date()
-            });
-            alert("Request Sent!"); closeModal();
-        };
-
-        function syncUsersHQ() {
-            onSnapshot(collection(db, "users"), (snap) => {
-                const list = document.getElementById('fullUserList'); list.innerHTML = "";
-                snap.forEach(d => {
-                    const u = d.data();
-                    list.innerHTML += `<tr class="border-b border-white/5">
-                        <td class="py-4 text-[9px]">${u.email}</td>
-                        <td class="py-4 font-bold text-emerald-500">৳${u.balance}</td>
-                        <td class="py-4 text-right"><button onclick="editBal('${d.id}')" class="text-amber-500 text-[8px] border border-amber-500/20 px-2 py-1">Edit</button></td>
-                    </tr>`;
-                });
-            });
-        }
-        window.editBal = async (id) => {
-            const b = prompt("Enter New Balance:");
-            if(b) await updateDoc(doc(db, "users", id), { balance: parseFloat(b) });
-        };
-        window.saveHqSettings = async () => {
-            const payNo = document.getElementById('setNo').value;
-            const rtp = document.getElementById('rtpMode').value;
-            await setDoc(doc(db, "system", "hq"), { payNo, rtp }); alert("Updated!");
-        };
-        window.toggleAdmin = (s) => document.getElementById('adminPanel').classList.toggle('hidden', !s);
+        window.closeW = () => document.getElementById('walletModal').classList.add('hidden');
     </script>
 </body>
 </html>
+
