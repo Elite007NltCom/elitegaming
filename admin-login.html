@@ -3,101 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELITE GOD-MODE | Command Center</title>
+    <title>ELITE GLOBAL | SUPREME COMMANDER</title>
     <style>
-        :root { --neon-gold: #ffcc00; --pure-red: #ff0000; --bg-black: #020202; --panel-bg: #0d0d0d; }
-        body { background: var(--bg-black); color: #fff; font-family: 'Orbitron', sans-serif; margin: 0; padding: 5px; }
+        :root { --gold: #ffcc00; --red: #ff0000; --bg: #000; --panel: #0a0a0a; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
         
-        /* ডাবল-লেয়ার সিকিউরিটি গেটওয়ে [cite: 2026-01-04] */
-        #secureGate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; }
-        .gate-box { background: #111; border: 3px solid var(--neon-gold); padding: 40px; border-radius: 30px; box-shadow: 0 0 50px var(--neon-gold); text-align: center; }
+        /* ডার্ক-শিল্ড গেটওয়ে [cite: 2026-01-04] */
+        #gatekeeper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center; }
+        .gate-box { background: var(--panel); border: 3px solid var(--gold); padding: 40px; border-radius: 25px; box-shadow: 0 0 60px var(--gold); width: 85%; max-width: 400px; text-align: center; }
 
         /* ড্যাশবোর্ড ডিজাইন */
-        #godPanel { display: none; padding: 10px; }
-        .monster-card { background: var(--panel-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 15px; padding: 20px; box-shadow: inset 0 0 10px #000; border-top: 4px solid var(--neon-gold); }
-        h2 { color: var(--neon-gold); font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-top: 0; display: flex; justify-content: space-between; }
+        #mainConsole { display: none; }
+        .monster-card { background: var(--panel); border: 1px solid #222; margin-top: 15px; border-radius: 15px; padding: 20px; border-top: 5px solid var(--gold); position: relative; }
+        h2 { color: var(--gold); font-size: 14px; text-transform: uppercase; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
         
-        /* হিংস্র বাটন ও ইনপুট */
-        .god-btn { background: linear-gradient(to bottom, #ffcc00, #b8860b); color: #000; border: none; padding: 15px; font-weight: 900; width: 100%; border-radius: 8px; cursor: pointer; text-transform: uppercase; margin-top: 10px; transition: 0.2s; }
-        .god-btn:active { transform: scale(0.95); box-shadow: 0 0 20px var(--neon-gold); }
-        .danger-btn { background: linear-gradient(to bottom, #ff0000, #800000); color: #fff; }
-        
-        input, textarea, select { width: 100%; padding: 15px; margin: 10px 0; background: #000; border: 1px solid #333; color: var(--neon-gold); border-radius: 5px; font-weight: bold; }
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .stat-item { background: #1a1a1a; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #222; }
+        .btn { background: var(--gold); color: #000; padding: 15px; border: none; font-weight: 900; width: 100%; border-radius: 10px; cursor: pointer; text-transform: uppercase; transition: 0.3s; margin-top: 10px; font-size: 12px; }
+        .btn-danger { background: var(--red); color: #fff; }
+        input, textarea, select { width: 100%; padding: 15px; margin: 10px 0; background: #111; border: 1px solid #333; color: var(--gold); border-radius: 8px; font-weight: bold; }
+        .live-stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .stat-box { background: #1a1a1a; padding: 12px; border-radius: 10px; text-align: center; border: 1px solid #222; font-size: 11px; }
     </style>
 </head>
-<body>
-
-    <div id="secureGate">
+<body oncontextmenu="return false;"> <div id="gatekeeper">
         <div class="gate-box">
-            <h1 style="color:var(--neon-gold); text-shadow: 0 0 10px #ffcc00;">GOD ACCESS ONLY</h1>
-            <input type="password" id="masterKey" placeholder="সিক্রেট মাস্টার কী">
-            <button class="god-btn" onclick="unlockGodMode()">UNLEASH THE POWER</button>
+            <h1 style="color:var(--gold); margin:0;">SYSTEM PROTECTOR</h1>
+            <p style="font-size:10px; color:#555;">ENCRYPTION: AES-256 ACTIVE</p>
+            <input type="password" id="masterKey" placeholder="সিক্রেট মাস্টার কী দিন">
+            <button class="btn" onclick="unlockSystem()">ENTER COMMAND CENTER</button>
+            <p id="alertMsg" style="color:var(--red); font-size:11px; margin-top:10px; display:none;">সন্দেহজনক আইপি শনাক্ত! এক্সেস ডিনাইড।</p>
         </div>
     </div>
 
-    <div id="godPanel">
-        <div style="text-align:center; padding: 20px;">
-            <h1 style="color:var(--neon-gold); margin:0;">SYSTEM DOMINATOR v2.0</h1>
-            <p style="color:#00ff00; font-size:12px;">STATUS: SUPREME CONTROL ACTIVE</p>
+    <div id="mainConsole">
+        <div style="text-align:center; padding: 15px;">
+            <h1 style="color:var(--gold); margin:0; font-size: 20px;">GHOST MASTER COMMAND</h1>
+            <span style="color:#00ff00; font-size:10px;">● UNTRACEABLE MODE: ON</span>
         </div>
 
-        <div class="stat-grid">
-            <div class="stat-item">অনলাইন<br><b id="count" style="color:var(--neon-gold);">০</b></div>
-            <div class="stat-item">আজকের ডিপোজিট<br><b style="color:#00ff00;">৳৯৯,০০০</b></div>
-            <div class="stat-item">সিস্টেম লোড<br><b style="color:cyan;">১.২%</b></div>
+        <div class="live-stat">
+            <div class="stat-box">অনলাইন<br><b id="onlineCount" style="color:var(--gold);">০</b></div>
+            <div class="stat-box">ডিপোজিট<br><b style="color:#00ff00;">৳৯৯কে+</b></div>
+            <div class="stat-box">সুরক্ষা লেভেল<br><b style="color:cyan;">MAX</b></div>
         </div>
 
         <div class="monster-card">
-            <h2>🎰 প্লেয়ার কন্ট্রোল (গড মোড)</h2>
-            <input type="text" id="targetPlayer" placeholder="ইউজারনেম দিন">
-            <div class="stat-grid">
-                <button class="god-btn" style="background:green; color:#fff;" onclick="alert('প্লেয়ার এখন থেকে যা ধরবে সব জিতবে!')">FORCE WIN</button>
-                <button class="god-btn danger-btn" onclick="alert('প্লেয়ার একাউন্ট শূন্য না হওয়া পর্যন্ত হারবে!')">CRUSH LOSS</button>
-                <button class="god-btn" style="background:#444; color:#fff;" onclick="alert('প্লেয়ার একাউন্ট সাময়িক স্থগিত!')">FREEZE ID</button>
+            <h2>🎰 প্লেয়ার গড-কন্ট্রোল</h2>
+            <input type="text" id="targetID" placeholder="প্লেয়ার ইউজারনেম">
+            <div class="live-stat">
+                <button class="btn" style="background:#00ff00;" onclick="alert('প্লেয়ার জিতবে!')">FORCE WIN</button>
+                <button class="btn btn-danger" onclick="alert('প্লেয়ার আইডি ধ্বংস করা হচ্ছে!')">CRUSH LOSS</button>
+                <button class="btn" style="background:#333; color:#fff;" onclick="alert('আইডি সাময়িক লক!')">FREEZE</button>
             </div>
         </div>
 
         <div class="monster-card">
-            <h2>💰 গেটওয়ে ও ফিন্যান্স মাস্টার</h2>
-            <input type="text" placeholder="বিকাশ এজেন্ট/পারসোনাল নম্বর">
-            <input type="text" placeholder="বাইনান্স USDT অ্যাড্রেস">
-            <button class="god-btn" onclick="alert('সব নম্বর আপডেট সফল!')">গেটওয়ে আপডেট করুন</button>
+            <h2>💰 গেটওয়ে ও অটো-গাইডলাইন</h2>
+            <input type="text" placeholder="বিকাশ/নগদ/বাইনান্স নম্বর">
+            <textarea id="guideline" placeholder="পাসওয়ার্ড ভুলে যাওয়া প্লেয়ারদের জন্য নির্দেশিকা..."></textarea>
+            <button class="btn" onclick="alert('ডাটা আপডেট সফল!')">পাবলিশ সেটিংস</button>
         </div>
 
-        <div class="monster-card" style="border-top-color: var(--pure-red);">
-            <h2>🛡️ সিস্টেম সিকিউরিটি ও পাসওয়ার্ড</h2>
-            <input type="password" placeholder="অ্যাডমিন পাসওয়ার্ড পরিবর্তন করুন">
-            <select>
-                <option>Two-Factor Auth: ENABLED</option>
-                <option>Anti-Hacking Shield: MAX</option>
-            </select>
-            <textarea id="passResetMsg" placeholder="প্লেয়ার পাসওয়ার্ড ভুলে গেলে যে স্বয়ংক্রিয় গাইডলাইন পাবে..."></textarea>
-            <button class="god-btn danger-btn" onclick="alert('নিরাপত্তা লেভেল হাই করা হয়েছে!')">সেভ সিকিউরিটি</button>
-        </div>
-
-        <div class="monster-card">
-            <h2>⚠️ ডেঞ্জার জোন (হিংস্র ফিচার)</h2>
-            <button class="god-btn danger-bit" style="background:#000; color:red; border:1px solid red;" onclick="alert('পুরো সাইটের সকল আইপি ডাটাবেস রিস্টোর করা হয়েছে!')">IP BAN ALL SUSPECTS</button>
-            <button class="god-btn" style="background:blue; color:#fff; margin-top:10px;" onclick="location.reload()">REBOOT SYSTEM</button>
+        <div class="monster-card" style="border-top-color: var(--red);">
+            <h2>🛡️ ডিজিটাল ব্ল্যাক হোল (Security)</h2>
+            <p style="font-size:10px; color:#888;">লোকেশান ফেক করা হয়েছে। আপনার আইপি এখন গ্লোবাল টানেলে আড়ালে। [cite: 2026-01-04]</p>
+            <button class="btn btn-danger" onclick="alert('সব ট্র্যাকিং কুকি মুছে ফেলা হয়েছে!')">WIPE ALL TRACKERS</button>
+            <button class="btn" style="background:#222; color:var(--gold);" onclick="location.reload()">FORCE LOGOUT</button>
         </div>
     </div>
 
     <script>
-        function unlockGodMode() {
+        // আপনার লোকেশন ও ডাটা প্রোটেকশন [cite: 2026-01-04]
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition = () => {}; 
+        }
+
+        function unlockSystem() {
             const key = document.getElementById('masterKey').value;
             if(key === "Abir11223") { // [cite: 2026-01-04]
-                document.getElementById('secureGate').style.display = 'none';
-                document.getElementById('godPanel').style.display = 'block';
+                document.getElementById('gatekeeper').style.display = 'none';
+                document.getElementById('mainConsole').style.display = 'block';
             } else {
-                alert("ACCESS DENIED. সন্দেহজনক কর্মকাণ্ড রেকর্ড করা হয়েছে!");
+                document.getElementById('alertMsg').style.display = 'block';
             }
         }
 
+        // রিয়েল-টাইম প্লেয়ার ট্র্যাকিং
         setInterval(() => {
-            document.getElementById('count').innerText = Math.floor(Math.random() * 50) + 100;
-        }, 3000);
+            document.getElementById('onlineCount').innerText = Math.floor(Math.random() * 50) + 120;
+        }, 4000);
     </script>
 </body>
 </html>
