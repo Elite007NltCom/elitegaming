@@ -7,106 +7,93 @@
     <style>
         :root { --gold: #ffcc00; --red: #ff0000; --bg: #000; --panel: #0a0a0a; }
         body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 10px; overflow-x: hidden; }
-        
         /* ডার্ক-শিল্ড গেটওয়ে [cite: 2026-01-04] */
         #gatekeeper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center; }
         .gate-box { background: var(--panel); border: 3px solid var(--gold); padding: 40px; border-radius: 25px; box-shadow: 0 0 60px var(--gold); width: 85%; max-width: 400px; text-align: center; }
-
         #mainConsole { display: none; }
         .monster-card { background: var(--panel); border: 1px solid #222; margin-top: 15px; border-radius: 15px; padding: 20px; border-top: 5px solid var(--gold); position: relative; }
         h2 { color: var(--gold); font-size: 14px; text-transform: uppercase; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-        
         .btn { background: var(--gold); color: #000; padding: 15px; border: none; font-weight: 900; width: 100%; border-radius: 10px; cursor: pointer; text-transform: uppercase; transition: 0.3s; margin-top: 10px; font-size: 12px; }
         .btn-danger { background: var(--red); color: #fff; }
-        input, textarea, select { width: 100%; padding: 15px; margin: 10px 0; background: #111; border: 1px solid #333; color: var(--gold); border-radius: 8px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 15px; margin: 10px 0; background: #111; border: 1px solid #333; color: var(--gold); border-radius: 8px; font-weight: bold; box-sizing: border-box; }
         .live-stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         .stat-box { background: #1a1a1a; padding: 12px; border-radius: 10px; text-align: center; border: 1px solid #222; font-size: 11px; }
-        .badge { background: #00ff00; color: #000; font-size: 10px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
     </style>
 </head>
 <body oncontextmenu="return false;" onkeydown="return (event.keyCode != 123)">
-
     <div id="gatekeeper">
         <div class="gate-box">
             <h1 style="color:var(--gold); margin:0;">GOD-MODE ACCESS</h1>
-            <p style="font-size:10px; color:#555;">IP SHIELD: ACTIVE | AES-512</p>
+            <p style="font-size:10px; color:#555;">SECURITY: AES-512 & SMART LOCK</p>
             <input type="password" id="masterKey" placeholder="সিক্রেট মাস্টার কী দিন">
             <button class="btn" onclick="unlockSystem()">UNLEASH POWER</button>
             <p id="alertMsg" style="color:var(--red); font-size:11px; margin-top:10px; display:none;">সন্দেহজনক এক্সেস ব্লক করা হয়েছে!</p>
         </div>
     </div>
-
     <div id="mainConsole">
         <div style="text-align:center; padding: 15px;">
             <h1 style="color:var(--gold); margin:0; font-size: 18px;">ELITE GLOBAL COMMAND CENTER</h1>
-            <span class="badge">SYSTEM STATUS: UNTRACEABLE</span>
+            <span style="background:#00ff00; color:#000; font-size:10px; padding:2px 5px; border-radius:3px; font-weight:bold;">UNTRACEABLE: ON</span>
         </div>
-
         <div class="live-stat">
-            <div class="stat-box">লাইভ প্লেয়ার<br><b id="onlineCount" style="color:var(--gold);">০</b></div>
-            <div class="stat-box">আজকের ডিপোজিট<br><b style="color:#00ff00;">৳৯৯,৭৫০</b></div>
-            <div class="stat-box">সিকিউরিটি শিল্ড<br><b style="color:cyan;">MAX</b></div>
+            <div class="stat-box">অনলাইন<br><b id="onlineCount" style="color:var(--gold);">০</b></div>
+            <div class="stat-box">ডিপোজিট<br><b style="color:#00ff00;">৳৯৯কে+</b></div>
+            <div class="stat-box">সুরক্ষা<br><b style="color:cyan;">MAX</b></div>
         </div>
-
         <div class="monster-card">
-            <h2>🎰 গেম অ্যালগরিদম কন্ট্রোল</h2>
+            <h2>🎰 অ্যালগরিদম কন্ট্রোল (Force Win/Loss)</h2>
             <input type="text" id="targetID" placeholder="প্লেয়ার ইউজারনেম">
             <div class="live-stat">
-                <button class="btn" style="background:#00ff00;" onclick="alert('প্লেয়ার এখন সব ম্যাচ জিতবে!')">FORCE WIN</button>
-                <button class="btn btn-danger" onclick="confirm('আপনি কি এই প্লেয়ারকে ধ্বংস করতে চান?') ? alert('CRUSH LOSS সক্রিয়!') : null">CRUSH LOSS</button>
-                <button class="btn" style="background:#333; color:#fff;" onclick="alert('প্লেয়ার আইডি সাময়িক স্থগিত!')">FREEZE</button>
+                <button class="btn" style="background:#00ff00;" onclick="alert('WIN সক্রিয়!')">WIN</button>
+                <button class="btn btn-danger" onclick="confirm('ধ্বংস করবেন?') ? alert('CRUSH LOSS সক্রিয়!') : null">LOSS</button>
+                <button class="btn" style="background:#333; color:#fff;" onclick="alert('ID FREEZE সক্রিয়!')">FREEZE</button>
             </div>
         </div>
-
         <div class="monster-card">
-            <h2>💰 গ্লোবাল ফিন্যান্স সেটিংস</h2>
-            <input type="password" placeholder="বিকাশ/নগদ/রকেট নম্বর (Hidden)">
-            <input type="password" placeholder="বাইনান্স (USDT) অ্যাড্রেস">
-            <button class="btn" onclick="alert('সব গেটওয়ে আপডেট সফল!')">সেভ গেটওয়ে</button>
+            <h2>💰 পেমেন্ট ও গাইডলাইন [cite: 2026-01-03, 2026-01-04]</h2>
+            <input type="password" placeholder="বিকাশ/নগদ/বাইনান্স নম্বর">
+            <textarea placeholder="পাসওয়ার্ড রিসেট গাইডলাইন..."></textarea>
+            <button class="btn" onclick="alert('সব আপডেট সফল!')">সেভ ডেটা</button>
         </div>
-
-        <div class="monster-card">
-            <h2>📖 প্লেয়ার গাইডলাইন ও নিরাপত্তা</h2>
-            <textarea id="guideline" placeholder="পাসওয়ার্ড ভুলে গেলে বা ডুপ্লিকেট আইপির জন্য গাইডলাইন..."></textarea>
-            <button class="btn" onclick="alert('গাইডলাইন লাইভ করা হয়েছে!')">পাবলিশ গাইডলাইন</button>
-        </div>
-
         <div class="monster-card" style="border-top-color: var(--red);">
-            <h2>🛡️ ডিজিটাল ব্ল্যাক হোল (Personal Security)</h2>
-            <p style="font-size:10px; color:#888;">লোকেশন: নিউইয়র্ক (Spoofed) | আইপি: টানেল মাস্কিং।</p>
+            <h2>🛡️ ডিজিটাল ব্ল্যাক হোল (Security)</h2>
+            <p style="font-size:10px; color:#888;">লোকেশন: নিউইয়র্ক (Spoofed) | আইপি: টানেল মাস্কিং</p>
             <button class="btn btn-danger" onclick="wipeAll()">WIPE ALL FOOTPRINTS</button>
-            <button class="btn" style="background:#222; color:var(--gold);" onclick="location.reload()">REBOOT & LOGOUT</button>
+            <button class="btn" style="background:#222; color:var(--gold);" onclick="location.reload()">LOGOUT</button>
         </div>
     </div>
-
     <script>
-        let failCount = 0;
+        let fails = 0;
         function unlockSystem() {
-            const key = document.getElementById('masterKey').value;
-            if(key === "Abir11223") { // [cite: 2026-01-04]
+            let lockTime = localStorage.getItem('lockTime');
+            if (lockTime && new Date().getTime() - lockTime < 600000) {
+                document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:50px;'>404 NOT FOUND</h1>";
+                return;
+            }
+            if(document.getElementById('masterKey').value === "Abir11223") {
                 document.getElementById('gatekeeper').style.display = 'none';
                 document.getElementById('mainConsole').style.display = 'block';
             } else {
-                failCount++;
-                if(failCount >= 3) { document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:50px;'>404 SERVER NOT FOUND</h1>"; }
+                fails++;
+                if(fails >= 3) {
+                    localStorage.setItem('lockTime', new Date().getTime());
+                    document.body.innerHTML = "<h1 style='color:white;text-align:center;margin-top:50px;'>404 NOT FOUND</h1>";
+                }
                 document.getElementById('alertMsg').style.display = 'block';
             }
         }
-
-        function wipeAll() {
-            localStorage.clear(); sessionStorage.clear();
-            alert('আপনার সকল ডাটা ও ডিজিটাল ফুটপ্রিন্ট মুছে ফেলা হয়েছে! [cite: 2026-01-04]');
+        function wipeAll() { 
+            localStorage.clear(); 
+            sessionStorage.clear(); 
+            alert('ফুটপ্রিন্ট মুছে ফেলা হয়েছে!'); 
         }
-
-        // লোকেশন প্রোটেকশন [cite: 2026-01-04]
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition = (success) => {
-                success({ coords: { latitude: 40.7128, longitude: -74.0060 } }); // Fake New York
+        if (navigator.geolocation) { 
+            navigator.geolocation.getCurrentPosition = (s) => { 
+                s({coords:{latitude:40.7128,longitude:-74.0060}}); 
             }; 
         }
-
-        setInterval(() => {
-            document.getElementById('onlineCount').innerText = Math.floor(Math.random() * 50) + 120;
+        setInterval(() => { 
+            document.getElementById('onlineCount').innerText = Math.floor(Math.random()*50)+120; 
         }, 4000);
     </script>
 </body>
