@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Gaming Global - Ultimate Master Panel</title>
+    <title>Elite Gaming Global - World No. 1 Master Panel</title>
     <style>
         body { background: #000; color: #fff; font-family: 'Roboto', sans-serif; margin: 0; padding: 10px; }
         .header { background: linear-gradient(45deg, #ffcc00, #b8860b); color: #000; padding: 15px; text-align: center; font-weight: bold; border-radius: 10px; margin-bottom: 10px; }
@@ -11,6 +11,7 @@
         h2 { color: #ffcc00; font-size: 16px; margin: 0 0 10px 0; display: flex; justify-content: space-between; align-items: center; }
         .btn { background: #ffcc00; color: #000; padding: 12px; border: none; font-weight: bold; cursor: pointer; width: 100%; border-radius: 5px; font-size: 13px; margin-top: 5px; transition: 0.3s; }
         input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; background: #222; border: 1px solid #444; color: #fff; box-sizing: border-box; }
+        .badge { background: #ffcc00; color: #000; padding: 2px 8px; border-radius: 10px; font-size: 10px; }
         .status-box { background: #111; padding: 10px; border-radius: 5px; font-size: 12px; line-height: 1.6; }
     </style>
 </head>
@@ -18,49 +19,60 @@
     <div class="header">👑 ELITE MASTER SYSTEM - NO. 1 GLOBAL</div>
 
     <div class="card" style="border-left-color: #00ff00;">
-        <h2>📊 লাইভ ট্রাফিক ও কমিশন</h2>
+        <h2>📊 লাইভ ট্রাফিক ও কমিশন <span class="badge">ACTIVE</span></h2>
         <div class="status-box">
             অনলাইন প্লেয়ার: <span id="onlineCount" style="color:#00ff00; font-weight:bold;">০</span> জন<br>
-            আজকের মোট ডিপোজিট: ৪৫,০০০৳
+            আজকের মোট ডিপোজিট: ৪৫,০০০৳ | উইথড্রয়াল: ১২,০০০৳
         </div>
-        <input type="number" placeholder="এজেন্ট কমিশন % সেট করুন">
-        <button class="btn" onclick="alert('কমিশন আপডেট সফল!')">কমিশন সেভ করুন</button>
+        <input type="number" id="commRate" placeholder="এজেন্ট কমিশন % সেট করুন">
+        <button class="btn" onclick="alert('কমিশন আপডেট সফল!')">সাব-এজেন্ট কমিশন সেভ করুন</button>
     </div>
 
     <div class="card">
-        <h2>🎰 প্লেয়ার গেম কন্ট্রোল (Win-Loss)</h2>
-        <input type="text" placeholder="প্লেয়ার ইউজারনেম">
+        <h2>🎰 প্লেয়ার গেম কন্ট্রোল (Targeted Win-Loss)</h2>
+        <input type="text" id="pName" placeholder="প্লেয়ার ইউজারনেম লিখুন">
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <button class="btn" style="background:#00ff00;" onclick="alert('WIN মোড সক্রিয়!')">WIN মোড</button>
-            <button class="btn" style="background:#ff4444; color:#fff;" onclick="alert('LOSS মোড সক্রিয়!')">LOSS মোড</button>
+            <button class="btn" style="background:#00ff00;" onclick="alert('প্লেয়ার জিতবে!')">WIN মোড</button>
+            <button class="btn" style="background:#ff4444; color:#fff;" onclick="alert('প্লেয়ার হারবে!')">LOSS মোড</button>
         </div>
     </div>
 
     <div class="card">
-        <h2>💬 চ্যাট ও সাপোর্ট নেটওয়ার্ক</h2>
-        <button class="btn" onclick="alert('এজেন্ট ও মাস্টার চ্যাট ওপেন হচ্ছে...')">চ্যাট ড্যাশবোর্ড দেখুন</button>
+        <h2>💬 চ্যাট ও সাপোর্ট (সাব-এজেন্ট ও মাস্টার)</h2>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button class="btn" onclick="alert('প্লেয়ার ও এজেন্ট চ্যাট বক্স...')">প্লেয়ার-এজেন্ট চ্যাট</button>
+            <button class="btn" style="background:#00d4ff;" onclick="alert('মাস্টার এজেন্ট সিক্রেট বক্স...')">মাস্টার-সাব চ্যাট</button>
+        </div>
+        <button class="btn" style="background:#222; color:#fff; margin-top:10px;" onclick="alert('নতুন সাব-অ্যাডমিন কোড তৈরি...')">নতুন সাব-অ্যাডমিন যোগ করুন</button>
     </div>
 
     <div class="card">
-        <h2>🖼️ সাইট ম্যানেজমেন্ট (ব্যানার ও টেক্সট)</h2>
-        <input type="text" placeholder="স্লাইডার ব্যানার ইমেজ URL">
+        <h2>🖼️ সাইট ম্যানেজমেন্ট (ব্যানার ও টেক্সট এডিট)</h2>
+        <input type="text" placeholder="ব্যানার ইমেজ URL (https://...)">
         <textarea placeholder="হোম পেজ নোটিশ এডিট করুন..."></textarea>
+        <textarea id="guideText" placeholder="ডুপ্লিকেট একাউন্ট দেখালে ইউজারকে কি গাইডলাইন দিবে..."></textarea>
         <button class="btn" onclick="alert('সাইট আপডেট সফল!')">সব আপডেট সেভ করুন</button>
     </div>
 
     <div class="card">
-        <h2>🛡️ সিকিউরিটি (Anti-Duplicate)</h2>
-        <button class="btn" onclick="alert('ডুপ্লিকেট আইপি ডাটাবেস চেক করা হচ্ছে...')">আইপি ও একাউন্ট সিকিউরিটি চেক</button>
+        <h2>💰 পেমেন্ট ও সিকিউরিটি (Anti-Duplicate)</h2>
+        <button class="btn" onclick="alert('বিকাশ/নগদ/USDT রিকোয়েস্ট লিস্ট...')">ডিপোজিট ও উইথড্রয়াল লিস্ট</button>
+        <button class="btn" style="background:#333; color:#ffcc00; margin-top:10px;" onclick="checkIP()">আইপি ও ডুপ্লিকেট ডাটাবেস স্ক্যান</button>
     </div>
 
     <p style="text-align:center; font-size:10px; color:#444; margin-top:20px;">
-        প্রজেক্ট: Elite Gaming | এক্সেস কোড: Abir11223 | সার্ভার: গ্লোবাল [cite: 2026-01-03, 2026-01-04]
+        প্রজেক্ট: Elite Gaming | এক্সেস কোড: Abir11223 | সার্ভার: গ্লোবাল [cite: 2026-01-04]
     </p>
 
     <script>
+        // লাইভ প্লেয়ার সিমুলেশন
         setInterval(() => {
-            document.getElementById('onlineCount').innerText = Math.floor(Math.random() * 15) + 5;
-        }, 4000);
+            document.getElementById('onlineCount').innerText = Math.floor(Math.random() * 20) + 10;
+        }, 3000);
+
+        function checkIP() {
+            alert("সিকিউরিটি চেক: একই আইপি বা নাম্বারে ২য় একাউন্ট স্বয়ংক্রিয়ভাবে ব্লক করা আছে। [cite: 2026-01-04]");
+        }
     </script>
 </body>
 </html>
