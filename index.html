@@ -6,98 +6,73 @@
     <title>Elite Gaming | Project 1 Final</title>
     <style>
         :root { --gold: #f3ba2f; --dark: #0a0a0b; --gray: #1c1c1e; --text: #f5f5f7; --err: #ff4757; --suc: #2ed573; }
-        body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; }
+        body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         .wrapper { max-width: 1200px; margin: 0 auto; padding: 20px; }
         
         /* হেডার ও ব্র্যান্ডিং */
-        header { background: #000; padding: 60px 20px; text-align: center; border-bottom: 4px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .hero-title { font-size: 45px; font-weight: 800; color: var(--gold); text-transform: uppercase; margin: 0; letter-spacing: 2px; }
+        header { background: #000; padding: 60px 20px; text-align: center; border-bottom: 4px solid var(--gold); }
+        .hero-title { font-size: 45px; font-weight: 800; color: var(--gold); text-transform: uppercase; margin: 0; }
         
         /* সিকিউরিটি কার্ড ও ইনপুট সিস্টেম */
-        .card { background: var(--gray); border-radius: 20px; padding: 45px; margin-top: 35px; border: 1px solid #333; position: relative; }
-        .card h2 { color: var(--gold); margin-bottom: 25px; font-size: 28px; }
+        .card { background: var(--gray); border-radius: 20px; padding: 45px; margin-top: 35px; border: 1px solid #333; }
         .input-group { margin-bottom: 25px; text-align: left; }
         label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--gold); }
-        input { width: 100%; padding: 20px; border-radius: 12px; border: 1px solid #444; background: #000; color: #fff; font-size: 16px; box-sizing: border-box; transition: 0.3s; }
-        input:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 10px rgba(243,186,47,0.2); }
+        input { width: 100%; padding: 20px; border-radius: 12px; border: 1px solid #444; background: #000; color: #fff; font-size: 16px; box-sizing: border-box; }
         
         /* অ্যাকশন বাটন */
-        .btn-submit { width: 100%; padding: 22px; background: var(--gold); color: #000; border: none; border-radius: 12px; font-weight: 800; font-size: 20px; cursor: pointer; text-transform: uppercase; transition: 0.4s; }
-        .btn-submit:hover { background: #fff; transform: translateY(-3px); }
+        .btn-submit { width: 100%; padding: 22px; background: var(--gold); color: #000; border: none; border-radius: 12px; font-weight: 800; font-size: 20px; cursor: pointer; text-transform: uppercase; }
 
         /* স্বয়ংক্রিয় গাইডলাইন ও অ্যালার্ট সিস্টেম */
-        .alert-box { display: none; margin-top: 30px; padding: 25px; border-radius: 15px; line-height: 1.7; border-left: 10px solid; animation: fadeIn 0.5s; }
+        .alert-box { display: none; margin-top: 30px; padding: 25px; border-radius: 15px; border-left: 10px solid; }
         .alert-error { background: rgba(255, 71, 87, 0.1); border-color: var(--err); color: #ff9999; }
         .alert-success { background: rgba(46, 213, 115, 0.1); border-color: var(--suc); color: #a2f2c2; }
-        .reset-option { margin-top: 15px; display: block; color: var(--gold); font-weight: 700; cursor: pointer; text-decoration: underline; font-size: 14px; }
+        .reset-option { margin-top: 15px; display: block; color: var(--gold); font-weight: 700; cursor: pointer; text-decoration: underline; }
 
-        /* পেমেন্ট গেটওয়ে ইন্টারফেস (Project 1 Priority) */
-        .payment-section { margin-top: 60px; text-align: center; }
+        /* পেমেন্ট গেটওয়ে */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 35px; }
-        .gate-card { background: #111; padding: 35px; border-radius: 18px; border: 1px solid #333; transition: 0.3s; position: relative; }
-        .gate-card:hover { border-color: var(--gold); background: #1a1a1a; transform: translateY(-5px); }
-        .usdt-tag { position: absolute; top: 10px; right: 10px; background: var(--gold); color: #000; font-size: 10px; font-weight: 900; padding: 3px 8px; border-radius: 4px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        footer { padding: 50px; text-align: center; color: #555; font-size: 12px; }
+        .gate-card { background: #111; padding: 35px; border-radius: 18px; border: 1px solid #333; text-align: center; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="hero-title">Elite Gaming Global</div>
-    <p style="color: #666; font-weight: 600;">World's No. 1 Secure Casino Platform</p>
+    <p style="color: #666;">No. 1 Secure Casino Platform</p>
 </header>
 
 <div class="wrapper">
     <div class="card">
         <h2>নিরাপদ রেজিস্ট্রেশন গেটওয়ে</h2>
-        <p style="color: #aaa; margin-bottom: 30px;">আপনার ফোন, ইমেল এবং আইপি স্বয়ংক্রিয়ভাবে যাচাই করা হচ্ছে।</p>
-        
         <div class="input-group">
             <label>অফিসিয়াল জিমেইল এড্রেস</label>
-            <input type="email" id="uEmail" placeholder="example@gmail.com" required>
+            <input type="email" id="uEmail" placeholder="example@gmail.com">
         </div>
-        
         <div class="input-group">
-            <label>মোবাইল নম্বর (bKash/Nagad/Rocket/Upay)</label>
-            <input type="text" id="uPhone" placeholder="01XXXXXXXXX" required>
+            <label>মোবাইল নম্বর (বিকাশ/নগদ)</label>
+            <input type="text" id="uPhone" placeholder="01XXXXXXXXX">
         </div>
-
         <button class="btn-submit" onclick="startSecurityAudit()">ভেরিফিকেশন সম্পন্ন করুন</button>
 
         <div id="statusBox" class="alert-box">
-            <div id="statusMsg" style="font-weight: 700; font-size: 18px; margin-bottom: 10px;"></div>
+            <div id="statusMsg" style="font-weight: 700; font-size: 18px;"></div>
             <div id="statusDesc"></div>
-            <span id="resetAction" class="reset-option" onclick="triggerResetFlow()">পাসওয়ার্ড রিসেট করার গাইডলাইন দেখুন</span>
+            <span id="resetAction" class="reset-option" onclick="triggerResetFlow()">পাসওয়ার্ড রিসেট গাইডলাইন দেখুন</span>
         </div>
     </div>
 
-    <div class="payment-section">
-        <h3 style="color: var(--gold); font-size: 24px;">ডিপোজিট ও উইথড্রয়াল মেথড</h3>
-        <div class="grid">
-            <div class="gate-card"><strong>bKash</strong><br><small>Local Wallet</small></div>
-            <div class="gate-card"><strong>Nagad</strong><br><small>Instant Transfer</small></div>
-            <div class="gate-card"><strong>Rocket/Upay</strong><br><small>Secure Pay</small></div>
-            <div class="gate-card"><strong>Bank Card</strong><br><small>DBBL/Global</small></div>
-            <div class="gate-card" style="border-color: var(--gold);">
-                <span class="usdt-tag">GLOBAL</span>
-                <strong>Binance (USDT)</strong><br><small>Crypto Gateway</small>
-            </div>
-        </div>
+    <div class="grid">
+        <div class="gate-card">bKash</div>
+        <div class="gate-card">Nagad</div>
+        <div class="gate-card" style="border-color: var(--gold);">Binance (USDT)</div>
     </div>
 </div>
 
-<footer>
-    &copy; 2026 Elite Gaming Project | Security Protocol 4.0 Active
-</footer>
-
 <script>
-    // আপনার সংরক্ষিত শর্ত অনুযায়ী ডাটাবেস ভ্যালিডেশন
+    // আপনার সংরক্ষিত ডাটাবেস ভ্যালিডেশন
     const localDB = {
-        ips: ["103.150.12.1", "116.58.201.12"],
-        emails: ["abir1122@gmail.com", "admin@elite.com"],
-        phones: ["01712345678", "01987654321"]
+        ips: ["103.150.12.1"],
+        emails: ["admin@elite.com"],
+        phones: ["01700000000"]
     };
 
     function startSecurityAudit() {
@@ -107,43 +82,35 @@
         const msg = document.getElementById('statusMsg');
         const desc = document.getElementById('statusDesc');
         const reset = document.getElementById('resetAction');
-
-        // ইউজারের বর্তমান আইপি ডিটেকশন (সিমুলেটেড)
-        const currentIP = "103.150.12.1"; 
+        const currentIP = "103.150.12.1"; // সিমুলেটেড আইপি
 
         let isBlocked = false;
         let blockReason = "";
 
-        if (localDB.emails.includes(mail)) {
-            isBlocked = true; blockReason = "জিমেইল এড্রেসটি";
-        } else if (localDB.phones.includes(phn)) {
-            isBlocked = true; blockReason = "ফোন নম্বরটি";
-        } else if (localDB.ips.includes(currentIP)) {
-            isBlocked = true; blockReason = "ইন্টারনেট প্রোটোকল (IP)";
-        }
+        if (localDB.emails.includes(mail)) { isBlocked = true; blockReason = "জিমেইল এড্রেসটি"; }
+        else if (localDB.phones.includes(phn)) { isBlocked = true; blockReason = "ফোন নম্বরটি"; }
+        else if (localDB.ips.includes(currentIP)) { isBlocked = true; blockReason = "আইপি (IP)"; }
 
+        box.style.display = "block";
         if (isBlocked) {
-            box.style.display = "block";
             box.className = "alert-box alert-error";
-            msg.innerText = "অ্যাক্সেস ডিনাইড (Access Denied)";
-            desc.innerText = "দুঃখিত, " + blockReason + " দিয়ে ইতিপূর্বে অ্যাকাউন্ট খোলা হয়েছে। আমাদের সিস্টেমে ডুপ্লিকেট অ্যাকাউন্ট নিষিদ্ধ।";
+            msg.innerText = "অ্যাক্সেস ডিনাইড";
+            desc.innerText = "দুঃখিত, " + blockReason + " দিয়ে ইতিপূর্বে অ্যাকাউন্ট খোলা হয়েছে।";
             reset.style.display = "block";
         } else {
-            box.style.display = "block";
             box.className = "alert-box alert-success";
             msg.innerText = "ভেরিফিকেশন সাকসেস!";
-            desc.innerText = "আপনার তথ্যগুলো ইউনিক। সিস্টেম আপনাকে পরবর্তী ধাপে নিয়ে যাচ্ছে...";
+            desc.innerText = "আপনার তথ্যগুলো ইউনিক। পরবর্তী ধাপে যান।";
             reset.style.display = "none";
         }
     }
 
     function triggerResetFlow() {
-        alert("গাইডলাইন: আপনার রেজিস্টার্ড ইমেইলে একটি সিকিউর লিঙ্ক পাঠানো হয়েছে। সেটি অনুসরণ করুন।");
+        alert("গাইডলাইন: আপনার মেইলে রিসেট লিঙ্ক পাঠানো হয়েছে।");
     }
 
-    // আপনার অরিজিনাল কোডের window.onerror লজিক
+    // আপনার অরিজিনাল কোডের onerror লজিক
     window.onerror = function() { return true; };
 </script>
-
 </body>
 </html>
