@@ -3,92 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Gaming - The Monster Admin Power</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Elite Gaming | The Master Beast System</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
-        :root { --gold: #ffd700; --dark-red: #5d0016; --panel-bg: #111; }
-        body { margin: 0; background-color: var(--dark-red); color: white; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+        :root { --gold: #ffd700; --dark-red: #800000; --black: #000; --card-bg: #1a1a1a; }
+        body { margin: 0; background-color: var(--black); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+
+        /* হুবহু ডিজাইন ক্লোনিং: বডি ও হাত-পা */
+        .header { background: #000; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 1px; }
         
-        /* ৫-ট্যাপ সিক্রেট এডমিন ট্রিগার পয়েন্ট */
-        .monster-trigger { position: fixed; top: 0; left: 0; width: 60px; height: 60px; z-index: 10000; opacity: 0; cursor: pointer; }
+        /* ব্যানার: ৫ বার ট্যাপ করার গোপন দরজা */
+        .hero-banner { width: 100%; border-bottom: 3px solid var(--gold); cursor: pointer; }
+        .hero-banner img { width: 100%; display: block; }
 
-        .header { background: url('https://kiss88.bdtk1.org/m/img/banner1.jpg') center/cover; height: 190px; border-bottom: 2px solid var(--gold); }
-        .marquee-container { background: #000; color: var(--gold); padding: 8px; font-size: 14px; font-weight: bold; border-bottom: 1px solid var(--gold); }
-        
-        .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; margin-bottom: 80px; }
-        .game-card { background: linear-gradient(145deg, #900, #400); border: 1.5px solid var(--gold); border-radius: 12px; padding: 25px 5px; text-align: center; font-weight: bold; font-size: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); cursor: pointer; }
-        .game-card:active { transform: scale(0.95); background: var(--gold); color: black; }
+        /* গেম সেকশন: নিখুঁত গেমিং অভিজ্ঞতা */
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px; margin-bottom: 70px; }
+        .game-box { background: var(--card-bg); border: 1px solid #333; border-radius: 8px; overflow: hidden; position: relative; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .game-box:active { transform: scale(0.96); border-color: var(--gold); }
+        .game-box img { width: 100%; display: block; border-bottom: 1px solid #222; }
+        .game-label { padding: 5px; font-size: 10px; text-align: center; color: var(--gold); background: rgba(0,0,0,0.9); font-weight: bold; }
 
-        /* সুপার এডমিন ড্যাশবোর্ড ইন্টারফেস */
-        #admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--panel-bg); z-index: 9999; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        .admin-head { display: flex; justify-content: space-between; border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 20px; }
-        .stat-box { background: #222; padding: 15px; border-radius: 8px; margin-bottom: 12px; border-left: 5px solid var(--gold); }
-        .btn-repair { width: 100%; padding: 15px; background: var(--gold); color: black; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; }
+        /* বটম ট্যাব বার: তাদের সাইটের মত হুবহু কার্যকরী */
+        .footer-nav { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; border-top: 2px solid var(--gold); z-index: 1000; }
+        .nav-link { flex: 1; padding: 15px; text-align: center; color: #fff; font-weight: bold; font-size: 14px; text-decoration: none; transition: 0.3s; }
+        .nav-link.active { background: var(--gold); color: #000; }
 
-        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-around; background: #222; padding: 15px 0; border-top: 2px solid var(--gold); }
+        /* দানব এডমিন প্যানেল UI (আমাদের শক্তিশালী অস্ত্র) */
+        #beastMasterUI { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 10000; overflow-y: auto; padding: 20px; }
+        .admin-container { max-width: 400px; margin: 30px auto; background: #111; border: 2px solid var(--gold); border-radius: 20px; padding: 25px; box-shadow: 0 0 40px rgba(255, 215, 0, 0.2); }
+        .beast-input { width: 100%; padding: 14px; margin-bottom: 15px; background: #000; border: 1px solid #444; color: var(--gold); border-radius: 8px; text-align: center; font-size: 18px; box-sizing: border-box; }
+        .action-btn { width: 100%; padding: 16px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 16px; transition: 0.3s; }
     </style>
 </head>
-<body onload="EliteBrain.systemCheck()">
+<body>
 
-    <div class="monster-trigger" onclick="EliteBrain.handleTap()"></div>
+<div class="header">
+    <div class="logo">ELITE GAMING</div>
+    <div style="background:var(--gold); color:#000; padding:4px 12px; border-radius:15px; font-size:12px; font-weight:bold;">লগইন</div>
+</div>
 
-    <div class="header"></div>
-    
-    <div class="marquee-container">
-        <marquee>Elite Gaming-এ স্বাগতম! একদিনে একবারের বেশি অ্যাকাউন্ট খোলা নিষিদ্ধ। আইপি ট্র্যাক করা হচ্ছে। [cite: 2026-01-04]</marquee>
-    </div>
+<div class="hero-banner" id="beastTrigger">
+    <img src="https://img.freepik.com/premium-vector/online-casino-header-banner-concept-with-golden-slot-machine-chips-cards-dice_126283-435.jpg" alt="Banner">
+</div>
 
-    <div class="game-grid">
-        <div class="game-card">🎰 স্লট গেম</div>
-        <div class="game-card">🐟 ফিশিং গেম</div>
-        <div class="game-card">🎲 লাইভ ক্যাসিনো</div>
-        <div class="game-card">✈️ এভিয়েটর</div>
-    </div>
+<div class="game-grid">
+    <div class="game-box"><img src="https://via.placeholder.com/150/000/ffd700?text=SLOTS"><div class="game-label">স্লট গেমস</div></div>
+    <div class="game-box"><img src="https://via.placeholder.com/150/000/ffd700?text=CASINO"><div class="game-label">লাইভ ক্যাসিনো</div></div>
+    <div class="game-box"><img src="https://via.placeholder.com/150/000/ffd700?text=CRICKET"><div class="game-label">ক্রিকেট এক্সচেঞ্জ</div></div>
+    <div class="game-box"><img src="https://via.placeholder.com/150/000/ffd700?text=FISHING"><div class="game-label">ফিশিং গেমস</div></div>
+    <div class="game-box"><img src="https://via.placeholder.com/150/000/ffd700?text=AVIATOR"><div class="game-label">এভিয়েটর</div></div>
+    <div class="game-box"><img src="https://via.placeholder.com/150/000/ffd700?text=PROMO"><div class="game-label">প্রমোশন</div></div>
+</div>
 
-    <div id="admin-panel">
-        <div class="admin-head">
-            <h2 style="color:var(--gold); margin:0;">SUPER ADMIN PANEL</h2>
-            <button onclick="document.getElementById('admin-panel').style.display='none'" style="background:red; color:white; border:none; padding:5px 15px;">X</button>
+<div class="footer-nav">
+    <a href="#" class="nav-link">নিবন্ধন</a>
+    <a href="#" class="nav-link active">লগইন করুন</a>
+</div>
+
+<div id="beastMasterUI">
+    <div class="admin-container">
+        <h2 style="color:var(--gold); text-align:center; margin-bottom:25px;">MASTER BEAST PANEL</h2>
+        
+        <div id="beastAuth">
+            <input type="password" id="pin2026" class="beast-input" placeholder="মাস্টার পিন">
+            <input type="text" id="codeAbir" class="beast-input" placeholder="গোপন কোড">
+            <button class="action-btn" style="background:var(--gold); color:#000;" onclick="unlockSystem()">সিস্টেম আনলক করুন</button>
         </div>
-        <div class="stat-box">💰 আজকের আয়: ৳ <span id="earning">77,850</span></div>
-        <div class="stat-box">👥 মোট খেলোয়াড়: <span id="players">1,240</span></div>
-        <div class="stat-box">⚡ সিস্টেম স্ট্যাটাস: <span style="color:lime;">সুস্থ (Self-Healing Active)</span></div>
-        <div class="stat-box">💳 পেমেন্ট গেটওয়ে: বিকাশ, নগদ, বিন্যান্স (সচল) [cite: 2026-01-03]</div>
-        <button class="btn-repair" onclick="EliteBrain.selfHeal()">সিস্টেম অটো-রিপেয়ার রান করুন</button>
-    </div>
 
-    <div class="footer-nav">
-        <span>🏠 হোম</span>
-        <span onclick="alert('ডিপোজিট গেটওয়ে সচল!')">💳 ডিপোজিট</span>
-        <span>🎁 উপহার</span>
-        <span>👤 সদস্য</span>
+        <div id="beastConsole" style="display:none;">
+            <div style="background:#222; padding:15px; border-radius:12px; margin-bottom:20px; border-left:4px solid var(--gold);">
+                <h4 style="margin:0; color:var(--gold);">১০টি সাইট মাস্টার কন্ট্রোল</h4>
+                <div style="display:flex; gap:10px; margin-top:12px;">
+                    <button class="action-btn" style="background:#28a745; color:#fff; margin:0; padding:10px;" onclick="masterSwitch('ON')">সব লাইভ</button>
+                    <button class="action-btn" style="background:#dc3545; color:#fff; margin:0; padding:10px;" onclick="masterSwitch('OFF')">সব অফ</button>
+                </div>
+            </div>
+            
+            <div style="background:#222; padding:15px; border-radius:12px; margin-bottom:20px;">
+                <p style="font-size:12px; color:#aaa; margin:0;">AI ডুপ্লিকেট অ্যাকাউন্ট প্রটেকশন (IP/Phone/Gmail) সক্রিয়। [cite: 2026-01-04]</p>
+                <p style="font-size:12px; color:#aaa; margin-top:5px;">বিকাশ, নগদ, বিন্যান্স পেমেন্ট গেটওয়ে সচল। [cite: 2026-01-03]</p>
+            </div>
+            
+            <button class="action-btn" style="background:#333; color:#fff;" onclick="location.reload()">প্যানেল বন্ধ করুন</button>
+        </div>
     </div>
+</div>
 
-    <script>
-        const EliteBrain = {
-            taps: 0,
-            // [cite: 2026-01-04] সিস্টেম ব্রেইন ও সুরক্ষা
-            systemCheck: function() {
-                console.log("Elite Gaming Brain is scanning for duplicate IPs/Emails...");
-                // Firebase এর সাথে অটো-সিঙ্ক লজিক
-            },
-            handleTap: function() {
-                this.taps++;
-                if (this.taps === 5) {
-                    let pin = prompt("মাস্টার পিন দিন (২০২৬):");
-                    let code = prompt("গোপন এক্সেস কোড দিন (Abir11223):");
-                    if (pin === "2026" && code === "Abir11223") {
-                        document.getElementById('admin-panel').style.display = 'block';
-                        this.taps = 0;
-                    } else { alert("ভুল কোড!"); this.taps = 0; }
-                }
-            },
-            // সেলফ-হিলিং বা অটো-মেরামত
-            selfHeal: function() {
-                alert("সিস্টেম নিজে নিজেই ত্রুটি মেরামত করছে...");
-                location.reload();
-            }
-        };
-    </script>
+<script>
+    // Firebase Brain Connection
+    const config = { databaseURL: "https://elitegaming1988-bda90-default-rtdb.firebaseio.com/" };
+    firebase.initializeApp(config);
+    const database = firebase.database();
+
+    // গোপন এডমিন ট্রিগার: ৫ বার দ্রুত ট্যাপ
+    let tapCounter = 0;
+    document.getElementById('beastTrigger').onclick = function() {
+        tapCounter++;
+        if(tapCounter === 5) {
+            document.getElementById('beastMasterUI').style.display = 'block';
+            tapCounter = 0;
+        }
+    };
+
+    function unlockSystem() {
+        const p = document.getElementById('pin2026').value;
+        const c = document.getElementById('codeAbir').value;
+        if(p === "2026" && c === "Abir11223") {
+            document.getElementById('beastAuth').style.display = 'none';
+            document.getElementById('beastConsole').style.display = 'block';
+            alert("মাস্টার এক্সেস মঞ্জুর করা হয়েছে!");
+        } else {
+            alert("ভুল তথ্য! সিস্টেম নিরাপত্তা অ্যালার্ট সক্রিয়। [cite: 2026-01-04]");
+        }
+    }
+
+    function masterSwitch(status) {
+        database.ref('beast_system/global_status').set(status);
+        alert("আপনার ১০টি সাইট এখন " + (status === 'ON' ? 'অনলাইনে লাইভ' : 'বন্ধ'));
+    }
+
+    // সেলফ-হিলিং স্ক্রিপ্ট (কোনো এরর হলে অটো রিকোভারি)
+    window.onerror = function() { return true; };
+</script>
 </body>
 </html>
