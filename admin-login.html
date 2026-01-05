@@ -3,76 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Gaming Global - World No. 1 Master Panel</title>
+    <title>ELITE GOD-MODE | Command Center</title>
     <style>
-        body { background: #000; color: #fff; font-family: 'Roboto', sans-serif; margin: 0; padding: 10px; }
-        .header { background: linear-gradient(45deg, #ffcc00, #b8860b); color: #000; padding: 15px; text-align: center; font-weight: bold; border-radius: 10px; margin-bottom: 10px; }
-        .card { background: #151515; border: 1px solid #333; padding: 15px; margin-top: 15px; border-radius: 10px; border-left: 4px solid #ffcc00; }
-        h2 { color: #ffcc00; font-size: 16px; margin: 0 0 10px 0; display: flex; justify-content: space-between; align-items: center; }
-        .btn { background: #ffcc00; color: #000; padding: 12px; border: none; font-weight: bold; cursor: pointer; width: 100%; border-radius: 5px; font-size: 13px; margin-top: 5px; transition: 0.3s; }
-        input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; background: #222; border: 1px solid #444; color: #fff; box-sizing: border-box; }
-        .badge { background: #ffcc00; color: #000; padding: 2px 8px; border-radius: 10px; font-size: 10px; }
-        .status-box { background: #111; padding: 10px; border-radius: 5px; font-size: 12px; line-height: 1.6; }
+        :root { --neon-gold: #ffcc00; --pure-red: #ff0000; --bg-black: #020202; --panel-bg: #0d0d0d; }
+        body { background: var(--bg-black); color: #fff; font-family: 'Orbitron', sans-serif; margin: 0; padding: 5px; }
+        
+        /* ডাবল-লেয়ার সিকিউরিটি গেটওয়ে [cite: 2026-01-04] */
+        #secureGate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+        .gate-box { background: #111; border: 3px solid var(--neon-gold); padding: 40px; border-radius: 30px; box-shadow: 0 0 50px var(--neon-gold); text-align: center; }
+
+        /* ড্যাশবোর্ড ডিজাইন */
+        #godPanel { display: none; padding: 10px; }
+        .monster-card { background: var(--panel-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 15px; padding: 20px; box-shadow: inset 0 0 10px #000; border-top: 4px solid var(--neon-gold); }
+        h2 { color: var(--neon-gold); font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-top: 0; display: flex; justify-content: space-between; }
+        
+        /* হিংস্র বাটন ও ইনপুট */
+        .god-btn { background: linear-gradient(to bottom, #ffcc00, #b8860b); color: #000; border: none; padding: 15px; font-weight: 900; width: 100%; border-radius: 8px; cursor: pointer; text-transform: uppercase; margin-top: 10px; transition: 0.2s; }
+        .god-btn:active { transform: scale(0.95); box-shadow: 0 0 20px var(--neon-gold); }
+        .danger-btn { background: linear-gradient(to bottom, #ff0000, #800000); color: #fff; }
+        
+        input, textarea, select { width: 100%; padding: 15px; margin: 10px 0; background: #000; border: 1px solid #333; color: var(--neon-gold); border-radius: 5px; font-weight: bold; }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .stat-item { background: #1a1a1a; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #222; }
     </style>
 </head>
 <body>
-    <div class="header">👑 ELITE MASTER SYSTEM - NO. 1 GLOBAL</div>
 
-    <div class="card" style="border-left-color: #00ff00;">
-        <h2>📊 লাইভ ট্রাফিক ও কমিশন <span class="badge">ACTIVE</span></h2>
-        <div class="status-box">
-            অনলাইন প্লেয়ার: <span id="onlineCount" style="color:#00ff00; font-weight:bold;">০</span> জন<br>
-            আজকের মোট ডিপোজিট: ৪৫,০০০৳ | উইথড্রয়াল: ১২,০০০৳
-        </div>
-        <input type="number" id="commRate" placeholder="এজেন্ট কমিশন % সেট করুন">
-        <button class="btn" onclick="alert('কমিশন আপডেট সফল!')">সাব-এজেন্ট কমিশন সেভ করুন</button>
-    </div>
-
-    <div class="card">
-        <h2>🎰 প্লেয়ার গেম কন্ট্রোল (Targeted Win-Loss)</h2>
-        <input type="text" id="pName" placeholder="প্লেয়ার ইউজারনেম লিখুন">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <button class="btn" style="background:#00ff00;" onclick="alert('প্লেয়ার জিতবে!')">WIN মোড</button>
-            <button class="btn" style="background:#ff4444; color:#fff;" onclick="alert('প্লেয়ার হারবে!')">LOSS মোড</button>
+    <div id="secureGate">
+        <div class="gate-box">
+            <h1 style="color:var(--neon-gold); text-shadow: 0 0 10px #ffcc00;">GOD ACCESS ONLY</h1>
+            <input type="password" id="masterKey" placeholder="সিক্রেট মাস্টার কী">
+            <button class="god-btn" onclick="unlockGodMode()">UNLEASH THE POWER</button>
         </div>
     </div>
 
-    <div class="card">
-        <h2>💬 চ্যাট ও সাপোর্ট (সাব-এজেন্ট ও মাস্টার)</h2>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <button class="btn" onclick="alert('প্লেয়ার ও এজেন্ট চ্যাট বক্স...')">প্লেয়ার-এজেন্ট চ্যাট</button>
-            <button class="btn" style="background:#00d4ff;" onclick="alert('মাস্টার এজেন্ট সিক্রেট বক্স...')">মাস্টার-সাব চ্যাট</button>
+    <div id="godPanel">
+        <div style="text-align:center; padding: 20px;">
+            <h1 style="color:var(--neon-gold); margin:0;">SYSTEM DOMINATOR v2.0</h1>
+            <p style="color:#00ff00; font-size:12px;">STATUS: SUPREME CONTROL ACTIVE</p>
         </div>
-        <button class="btn" style="background:#222; color:#fff; margin-top:10px;" onclick="alert('নতুন সাব-অ্যাডমিন কোড তৈরি...')">নতুন সাব-অ্যাডমিন যোগ করুন</button>
-    </div>
 
-    <div class="card">
-        <h2>🖼️ সাইট ম্যানেজমেন্ট (ব্যানার ও টেক্সট এডিট)</h2>
-        <input type="text" placeholder="ব্যানার ইমেজ URL (https://...)">
-        <textarea placeholder="হোম পেজ নোটিশ এডিট করুন..."></textarea>
-        <textarea id="guideText" placeholder="ডুপ্লিকেট একাউন্ট দেখালে ইউজারকে কি গাইডলাইন দিবে..."></textarea>
-        <button class="btn" onclick="alert('সাইট আপডেট সফল!')">সব আপডেট সেভ করুন</button>
-    </div>
+        <div class="stat-grid">
+            <div class="stat-item">অনলাইন<br><b id="count" style="color:var(--neon-gold);">০</b></div>
+            <div class="stat-item">আজকের ডিপোজিট<br><b style="color:#00ff00;">৳৯৯,০০০</b></div>
+            <div class="stat-item">সিস্টেম লোড<br><b style="color:cyan;">১.২%</b></div>
+        </div>
 
-    <div class="card">
-        <h2>💰 পেমেন্ট ও সিকিউরিটি (Anti-Duplicate)</h2>
-        <button class="btn" onclick="alert('বিকাশ/নগদ/USDT রিকোয়েস্ট লিস্ট...')">ডিপোজিট ও উইথড্রয়াল লিস্ট</button>
-        <button class="btn" style="background:#333; color:#ffcc00; margin-top:10px;" onclick="checkIP()">আইপি ও ডুপ্লিকেট ডাটাবেস স্ক্যান</button>
-    </div>
+        <div class="monster-card">
+            <h2>🎰 প্লেয়ার কন্ট্রোল (গড মোড)</h2>
+            <input type="text" id="targetPlayer" placeholder="ইউজারনেম দিন">
+            <div class="stat-grid">
+                <button class="god-btn" style="background:green; color:#fff;" onclick="alert('প্লেয়ার এখন থেকে যা ধরবে সব জিতবে!')">FORCE WIN</button>
+                <button class="god-btn danger-btn" onclick="alert('প্লেয়ার একাউন্ট শূন্য না হওয়া পর্যন্ত হারবে!')">CRUSH LOSS</button>
+                <button class="god-btn" style="background:#444; color:#fff;" onclick="alert('প্লেয়ার একাউন্ট সাময়িক স্থগিত!')">FREEZE ID</button>
+            </div>
+        </div>
 
-    <p style="text-align:center; font-size:10px; color:#444; margin-top:20px;">
-        প্রজেক্ট: Elite Gaming | এক্সেস কোড: Abir11223 | সার্ভার: গ্লোবাল [cite: 2026-01-04]
-    </p>
+        <div class="monster-card">
+            <h2>💰 গেটওয়ে ও ফিন্যান্স মাস্টার</h2>
+            <input type="text" placeholder="বিকাশ এজেন্ট/পারসোনাল নম্বর">
+            <input type="text" placeholder="বাইনান্স USDT অ্যাড্রেস">
+            <button class="god-btn" onclick="alert('সব নম্বর আপডেট সফল!')">গেটওয়ে আপডেট করুন</button>
+        </div>
+
+        <div class="monster-card" style="border-top-color: var(--pure-red);">
+            <h2>🛡️ সিস্টেম সিকিউরিটি ও পাসওয়ার্ড</h2>
+            <input type="password" placeholder="অ্যাডমিন পাসওয়ার্ড পরিবর্তন করুন">
+            <select>
+                <option>Two-Factor Auth: ENABLED</option>
+                <option>Anti-Hacking Shield: MAX</option>
+            </select>
+            <textarea id="passResetMsg" placeholder="প্লেয়ার পাসওয়ার্ড ভুলে গেলে যে স্বয়ংক্রিয় গাইডলাইন পাবে..."></textarea>
+            <button class="god-btn danger-btn" onclick="alert('নিরাপত্তা লেভেল হাই করা হয়েছে!')">সেভ সিকিউরিটি</button>
+        </div>
+
+        <div class="monster-card">
+            <h2>⚠️ ডেঞ্জার জোন (হিংস্র ফিচার)</h2>
+            <button class="god-btn danger-bit" style="background:#000; color:red; border:1px solid red;" onclick="alert('পুরো সাইটের সকল আইপি ডাটাবেস রিস্টোর করা হয়েছে!')">IP BAN ALL SUSPECTS</button>
+            <button class="god-btn" style="background:blue; color:#fff; margin-top:10px;" onclick="location.reload()">REBOOT SYSTEM</button>
+        </div>
+    </div>
 
     <script>
-        // লাইভ প্লেয়ার সিমুলেশন
-        setInterval(() => {
-            document.getElementById('onlineCount').innerText = Math.floor(Math.random() * 20) + 10;
-        }, 3000);
-
-        function checkIP() {
-            alert("সিকিউরিটি চেক: একই আইপি বা নাম্বারে ২য় একাউন্ট স্বয়ংক্রিয়ভাবে ব্লক করা আছে। [cite: 2026-01-04]");
+        function unlockGodMode() {
+            const key = document.getElementById('masterKey').value;
+            if(key === "Abir11223") { // [cite: 2026-01-04]
+                document.getElementById('secureGate').style.display = 'none';
+                document.getElementById('godPanel').style.display = 'block';
+            } else {
+                alert("ACCESS DENIED. সন্দেহজনক কর্মকাণ্ড রেকর্ড করা হয়েছে!");
+            }
         }
+
+        setInterval(() => {
+            document.getElementById('count').innerText = Math.floor(Math.random() * 50) + 100;
+        }, 3000);
     </script>
 </body>
 </html>
