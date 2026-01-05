@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Elite Gaming - Admin Control</title>
+    <style>
+        body { background: #1a1a1a; color: #fff; font-family: Arial; padding: 20px; text-align: center; }
+        .box { border: 1px solid #ffcc00; padding: 15px; margin: 10px; border-radius: 10px; background: #262626; }
+        .btn { background: #ffcc00; color: #000; padding: 10px; border: none; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+        input { width: 90%; padding: 10px; margin: 5px 0; border-radius: 5px; }
+        h2 { color: #ffcc00; }
+    </style>
+</head>
+<body>
+    <h1>অ্যাডমিন ড্যাশবোর্ড</h1>
+
+    <div class="box">
+        <h2>উইন-লস (Win-Loss) কন্ট্রোল</h2>
+        <p>প্লেয়ারের জয়ের হার সেট করুন:</p>
+        <input type="number" id="winRate" placeholder="জয়ের হার % (যেমন: ৩০)">
+        <button class="btn" onclick="alert('উইন রেট সেট করা হয়েছে!')">অ্যালগরিদম আপডেট করুন</button>
+    </div>
+
+    <div class="box">
+        <h2>ইউজার ও সিকিউরিটি ম্যানেজমেন্ট</h2>
+        <p>ডুপ্লিকেট একাউন্ট ও আইপি ব্লক স্ট্যাটাস চেক করুন।</p>
+        <button class="btn" onclick="alert('৪ জন ইউজারের তথ্য লোড হচ্ছে...')">ইউজার লিস্ট দেখুন</button>
+    </div>
+
+    <div class="box">
+        <h2>পেমেন্ট গেটওয়ে (বিকাশ/নগদ/USDT)</h2>
+        <p>আগত পেমেন্ট রিকোয়েস্টগুলো এখানে জমা হবে।</p>
+        <button class="btn">পেমেন্ট হিস্ট্রি চেক করুন</button>
+    </div>
+
+    <p style="font-size: 12px; color: #666;">প্রজেক্ট কোড: Abir11223</p>
+</body>
+</html>
